@@ -1,5 +1,24 @@
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import { refs } from "./refs";
+import { displayNone, displayNoneError } from "./helpers";
+displayNone()
+displayNoneError ()
+
+
+
+
+fetchBreeds()
+displayNone()
+refs.select.addEventListener('change', onSelectChange )
+function onSelectChange(event) {
+    breedId = event.target.value;
+    fetchCatByBreed(breedId);
+displayNone()
+}
+
+
+
+
 
 // .then(response => {
 // return response.json();
@@ -14,9 +33,3 @@ import { refs } from "./refs";
 // .catch(error => {
 //   console.log(error);
 // }) 
-fetchBreeds()
-refs.select.addEventListener('change', onSelectChange )
-function onSelectChange(event) {
-    breedId = event.target.value;
-    fetchCatByBreed(breedId);
-}
