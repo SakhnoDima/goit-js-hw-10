@@ -8,5 +8,5 @@ fetchBreeds()
  // обрабатываем клик, рендерим информацию 
 function onSelectChange(event) {
    const breedId = event.target.value;
-    fetchCatByBreed(breedId);
+   fetchCatByBreed(breedId);
 }
