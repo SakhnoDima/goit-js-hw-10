@@ -9,7 +9,6 @@ export function displayShow (){
     refs.loader.style.display = "block";
     }
 
-
 //! функция скрывает селект
 export function displayNoneSelect (){
     refs.select.style.display = "none";
