@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 import {renderOptions, renderCatCard} from "./render_option";
 import { refs } from "./refs";
 import {
@@ -20,12 +22,13 @@ export function fetchBreeds(){
 
     setTimeout(() => {
 
-    fetch("https://api.thecatapi.com/v1/breeds")
+    fetch("https://api.thecatapi.com/v1/breed")
     .then(response => { 
         return response.json();
     })
     .then(breeds => renderOptions(breeds,refs.select))
     .catch(error => {
+        Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
           console.log(error);
           displayShowError()
           displayNoneSelect()   
