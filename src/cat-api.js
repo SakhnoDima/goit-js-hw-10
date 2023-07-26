@@ -1,4 +1,9 @@
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+Notify.init({ 
+      width: '300px',
+      timeout: 3000,
+      position: 'center-center',});
+
 
 import {renderOptions, renderCatCard} from "./render_option";
 import { refs } from "./refs";
@@ -18,32 +23,34 @@ export function fetchBreeds(){
 
     displayNoneSelect(),
     displayShow()
-    displayNoneError()
+    // displayNoneError()
 
     setTimeout(() => {
 
-    fetch("https://api.thecatapi.com/v1/breed")
+    fetch("https://api.thecatapi.com/v1/breeds")
     .then(response => { 
         return response.json();
     })
     .then(breeds => renderOptions(breeds,refs.select))
     .catch(error => {
-        Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+          Notify.failure('Oops! Something went wrong! Try reloading the page!');
           console.log(error);
-          displayShowError()
+        //   displayShowError()
           displayNoneSelect()   
         })
+    .finally(() => {
 
-        displayShowSelect()
-        displayNone()
-
+    displayShowSelect()
+    displayNone()
+    })
+   
     }, 2000); 
 }
 
 // ? рендер информации после запроса
 export function fetchCatByBreed(breedId){
     displayShow()
-    displayNoneError()
+    // displayNoneError()
     refs.catInfo.innerHTML = "";
 
     setTimeout(() => {
@@ -56,11 +63,14 @@ export function fetchCatByBreed(breedId){
         renderCatCard(catCard, refs.catInfo)
     })
     .catch(error => {
+        Notify.failure('Oops! Something went wrong! Try reloading the page!');
         console.log(error);
-        displayShowError()   
+        // displayShowError()   
       }) 
-      displayNone()
+    .finally(() => {
 
+      displayNone()
+    }) 
     }, 2000);
    
 }

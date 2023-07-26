@@ -19,11 +19,11 @@ export function displayShowSelect (){
     }
 
 
-//! функция скрывает error
-export function displayNoneError (){
-    refs.error.style.display = "none";
-    }
-//? функция показывает error
-export function displayShowError (){
-    refs.error.style.display = "block";
-    }
+// //! функция скрывает error
+// export function displayNoneError (){
+//     refs.error.style.display = "none";
+//     }
+// //? функция показывает error
+// export function displayShowError (){
+//     refs.error.style.display = "block";
+//     }
