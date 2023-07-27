@@ -3,6 +3,7 @@ Notify.init({
       width: '300px',
       timeout: 3000,
       position: 'center-center',});
+import SlimSelect from 'slim-select'
 
 
 import {renderOptions, renderCatCard} from "./render_option";
@@ -14,6 +15,7 @@ import {
     displayShowSelect,
     displayShowError,
     displayNoneError } from "./helpers";
+
 
 
 const KEY = "live_QwxIJNU3VtCwzTnsw0wWFLJgnT53KZYtpKzx4Fdm53ZhxhA8kBUxgYGJjrm68GKS"
