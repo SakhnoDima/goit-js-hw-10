@@ -3,8 +3,8 @@ Notify.init({
       width: '300px',
       timeout: 3000,
       position: 'center-center',});
-import SlimSelect from 'slim-select'
-
+import SlimSelect from 'slim-select';//! не разобраля
+import axios, { AxiosHeaders } from 'axios';
 
 import {renderOptions, renderCatCard} from "./render_option";
 import { refs } from "./refs";
@@ -13,31 +13,30 @@ import {
     displayNone, 
     displayNoneSelect,
     displayShowSelect,
-    displayShowError,
-    displayNoneError } from "./helpers";
+  } from "./helpers";
 
 
 
 const KEY = "live_QwxIJNU3VtCwzTnsw0wWFLJgnT53KZYtpKzx4Fdm53ZhxhA8kBUxgYGJjrm68GKS"
+const URL = "https://api.thecatapi.com/v1/breeds";
+
 
 // ? запрос на получение имен для селекта
 export function fetchBreeds(){
 
     displayNoneSelect(),
     displayShow()
-    // displayNoneError()
-
+  
     setTimeout(() => {
-
-    fetch("https://api.thecatapi.com/v1/breeds")
-    .then(response => { 
-        return response.json();
-    })
-    .then(breeds => renderOptions(breeds,refs.select))
+   
+    // fetch("https://api.thecatapi.com/v1/breeds")
+    axios.get(URL)
+    .then(breeds =>{
+      renderOptions(breeds,refs.select)})
     .catch(error => {
           Notify.failure('Oops! Something went wrong! Try reloading the page!');
           console.log(error);
-        //   displayShowError()
+        
           displayNoneSelect()   
         })
     .finally(() => {
@@ -52,7 +51,7 @@ export function fetchBreeds(){
 // ? рендер информации после запроса
 export function fetchCatByBreed(breedId){
     displayShow()
-    // displayNoneError()
+   
     refs.catInfo.innerHTML = "";
 
     setTimeout(() => {
@@ -67,7 +66,7 @@ export function fetchCatByBreed(breedId){
     .catch(error => {
         Notify.failure('Oops! Something went wrong! Try reloading the page!');
         console.log(error);
-        // displayShowError()   
+       
       }) 
     .finally(() => {
 
