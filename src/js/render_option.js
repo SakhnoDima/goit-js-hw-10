@@ -1,6 +1,6 @@
 
 export function renderOptions(arr, rootSelector ) {
-    const markup = arr.data.map(el => `<option value=${el.id}>${el.name}</option>`).join("");
+    const markup = arr.map(el => `<option value=${el.id}>${el.name}</option>`).join("");
     rootSelector.innerHTML = markup
 }
 
