@@ -15,12 +15,17 @@ import { displayNoneLoader, displayShowLoader, displayNoneSelect, displayShowSel
 refs.select.addEventListener('change', onSelectChange )
 
 // получаем и рендерим селект
-fetchBreeds().then(breeds =>renderOptions(breeds, refs.select))
+fetchBreeds().then(breeds =>{
+displayShowSelect();
+renderOptions(breeds, refs.select)
+})
+.catch(error => {
+console.log(error);
+})
 .finally(() => {
 const select = new SlimSelect({
       select: refs.select,
     })
-displayShowSelect()
 displayNoneLoader()
 
 })
@@ -29,6 +34,7 @@ displayNoneLoader()
 function onSelectChange(event) {
    const breedId = event.target.value;
    displayShowLoader()
+   refs.catInfo.innerHTML = " ";
    fetchCatByBreed(breedId).then(catCard => renderCatCard(catCard, refs.catInfo))
    .finally(() => {
    displayNoneLoader()
